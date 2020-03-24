@@ -1,7 +1,16 @@
-from settings import Cell, reconstruct_path, pathfinder, Settings
-import time, pygame, sys
+from settings import Settings
+from a_star import *
+from maze_generator import *
+import time, pygame, sys, random
 import numpy as np
 
+'''This is a basic implementation of the A* shortest path finding algorithm.
+    For all versions, within the arrays:
+    0 represents a passable node
+    1 represents an obstacle node
+    2 represents the start and end nodes
+    3 represents a path node
+    '''
 
 def terminal_version():
     running = True
@@ -71,23 +80,20 @@ def manual_version():
         print('The shortest distance is ', path[2], ' units.')
 
 def pygame_version():
-    board = [[0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 1, 2, 1, 0, 0, 1, 1, 0],
-            [0, 0, 1, 1, 1, 0, 1, 1, 0, 0],
-            [0, 1, 1, 0, 1, 0, 1, 2, 0, 0],
-            [0, 1, 0, 0, 0, 0, 1, 1, 1, 0],
-            [0, 1, 0, 1, 1, 0, 0, 0, 1, 0],
-            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 1, 1, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    height = 60
+    width = 80
     
-    starting_point = (2,3)
-    end_point = (4,7)
+    starting_point = (random.randint(0, height-1),0)
+    end_point = (random.randint(0, height-1), width-1)
+    board = maze_generator(10, height, width, starting_point, end_point)
+    board[starting_point] = 2
+    board[end_point] = 2
 
     start_time = time.time()
     path = pathfinder(board, starting_point, end_point)
     end_time = time.time()
+
+    print("Algorithm took ", end_time - start_time, " seconds.")
 
     if path[0] == False:
         print('No possible paths')
@@ -99,23 +105,18 @@ def pygame_version():
     
     pygame.init()
 
-    while True:
-        settings = Settings() #initializes settings
+    settings = Settings(width, height) #initializes settings
 
-        screen = pygame.display.set_mode((settings.window_width, settings.window_height))
-        pygame.display.set_caption("A-Star")
+    screen = pygame.display.set_mode((settings.window_width, settings.window_height))
+    pygame.display.set_caption("A-Star")
 
-        settings.draw_board(board, screen)
-        pygame.display.flip()
-
-        for event in pygame.event.get(): 
-                    if event.type == pygame.QUIT:
-                        pygame.quit()
-                        sys.exit()
-
+    settings.draw_board(board, screen)
+    pygame.display.flip()
 
 
 if __name__ == "__main__":
     #manual_version()
-    pygame_version()
+    for x in range(10):
+        pygame_version()
+    
     #terminal_version()
