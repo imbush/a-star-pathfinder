@@ -3,8 +3,8 @@ Implementation of the 2 maze generation algorithms and the A* pathfinding algori
 
 ## The Algorithms:
 
-### Inle's Algorithm ;)([you can find the algorithm here](rand_maze.py))
-I wanted to create my own maze generating algorithm before doing any research.
+### [Inle's Algorithm](rand_maze.py)
+I wanted to create my own maze generation algorithm before being corrupted by other algorithms. This is what I came up with.
 
 #### Path_generator
 The algorithm uses a path_generator function which makes a random path between two points and works as follows:
@@ -22,9 +22,10 @@ The Algorithm works as follows:
 2. Generate n pairs of points and create a path between each pair.
 
 The n variable depicts the number of random corridors created. A small n will result in a sparser maze like so: 
-
+![Inle's algorithm with small n](/readme_images/low_n.jpeg)
 
 While a large n will result in large spaces like below:
+![Inle's algorithm with large n](/readme_images/high_n.png)
 
 #### Analysis
 This algorithm could be changed to prefer vertical or horizontal corridors by changing the probability of certain viable neighbors being chosen. Similarly, certain patterns could be selected for by choosing the pairs of end-points from specific areas on the board. 
@@ -33,11 +34,14 @@ This algorithm is wildly inefficient, because as the dimensions of the board inc
 
 
 As recursive backtracking and a-star have been described and analyzed many times in the past I will link to my sources for both, but need not describe them myself.
-### Recursive Backtracking
+### [Recursive Backtracking](recursive_backtracker.py)
+Here is an example of a 50 by 50 maze generated through recursive backtracking. 
+![recursive backtracking maze image](/readme_images/maze.png)
 
-
-### A-Star
-
+Note: For the purposes of maze solving, the recursive backtracking function also returns the node on the board with the longest distance from the start. 
+### [A-star](a_star.py)
+Here is an example of an a-star solution of Inle's Algorithm.
+![Inle's Algorithm solved by a-star](/readme_images/a_star.jpeg)
 
 ## The Functions:([you can find them here](main.py))
 
@@ -53,5 +57,5 @@ institutes the maze_generator in rand_maze.py and displays the solution with pyg
 ### 4. recursive_backtracker(): 
 creates a maze with recursive backtracking and solves it with a-star. It displays the solution with pygame.
 
-![recursive backtracker maze image](rec_backtracker_image.jpeg)
+![solved recursive backtracker maze image](/readme_images/rec_backtracker_image.jpeg)
 This is a 200 by 200 large maze created by the recursive backtracker algorithm and solved by the a-star algorithm. This took about 150 seconds to solve. 
