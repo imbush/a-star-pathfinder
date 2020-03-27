@@ -11,12 +11,13 @@ def path_generator(height, width, start:tuple, end:tuple):
 
     adjacent_cells = [(-1,0),(0,-1),(0,1),(1,0)]
     path_not_found = True
+    path = 0
 
     while path_not_found:
         main_path = np.zeros((height, width))
         current_cell = start
         path_list = [start]
-
+        path += 1
         while True:
             #creates list of viable adjacent cells
             viable_adjacent = []
@@ -44,7 +45,6 @@ def path_generator(height, width, start:tuple, end:tuple):
             if current_cell == end:
                 path_not_found = False
                 break
-
     return(path_list)
 
 
@@ -86,7 +86,7 @@ if __name__ == "__main__":
     start = (0,0)
     end = (height-1, width -1)
     
-    board = maze_generator(10, height, width, start, end)
+    board = maze_generator(5, height, width, start, end)
 
     pygame.init()
     

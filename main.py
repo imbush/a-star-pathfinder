@@ -170,12 +170,12 @@ def recursive_backtracker():
 if __name__ == "__main__":
     #manual_version()
 
-    # for _ in range(10):
-    #     rand_maze_pygame()
-    #     time.sleep(3)
+    for _ in range(10):
+        rand_maze_pygame()
+        time.sleep(3)
 
-    for _ in range(5):
-        recursive_backtracker()
+    # for _ in range(5):
+    #     recursive_backtracker()
         
 
     #terminal_version()
