@@ -47,7 +47,7 @@ def pathfinder(table, start: tuple, end: tuple):
 
 
         neighbors = []
-        for neighbor_change in [(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]:
+        for neighbor_change in [(-1,0),(0,-1),(0,1),(1,0)]:
             neighbor_position =  tuple(map(lambda i, j: i + j, current_cell.position, neighbor_change))
             
             #skips if neighbor is outside bounds or is an obstacle

@@ -52,11 +52,14 @@ class Settings:
         for boxx in range (self.x_num_rect):
             for boxy in range (self.y_num_rect):
                 left, top = self.left_top_coords_of_box(boxx + 1, boxy + 1) #I don't know why this works but it works
-                if board[boxy][boxx] == 0:
-                    pygame.draw.rect(screen, self.empty_color,(left, top, self.box_width, self.box_height)) #draws empty boxes
-                elif board[boxy][boxx] == 1:
-                    pygame.draw.rect(screen, self.obstacle_color,(left, top, self.box_width, self.box_height)) #draws infected boxes
-                elif board[boxy][boxx] == 2:
-                    pygame.draw.rect(screen, self.endpoint_color,(left, top, self.box_width, self.box_height)) 
-                elif board[boxy][boxx] == 3:
-                    pygame.draw.rect(screen, self.path_color,(left, top, self.box_width, self.box_height)) 
+                if isinstance(board[boxy][boxx], int) or isinstance(board[boxy][boxx], float):
+                    if board[boxy][boxx] == 0:
+                        pygame.draw.rect(screen, self.empty_color,(left, top, self.box_width, self.box_height)) #draws empty boxes
+                    elif board[boxy][boxx] == 1:
+                        pygame.draw.rect(screen, self.obstacle_color,(left, top, self.box_width, self.box_height)) #draws infected boxes
+                    elif board[boxy][boxx] == 2:
+                        pygame.draw.rect(screen, self.endpoint_color,(left, top, self.box_width, self.box_height)) 
+                    elif board[boxy][boxx] == 3:
+                        pygame.draw.rect(screen, self.path_color,(left, top, self.box_width, self.box_height)) 
+                else:
+                    pygame.draw.rect(screen, board[boxy][boxx][1],(left, top, self.box_width, self.box_height))

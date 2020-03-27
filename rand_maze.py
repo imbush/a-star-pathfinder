@@ -2,6 +2,10 @@ from settings import Settings
 import time, pygame, sys, random
 import numpy as np
 
+'''Maze generation algorithm which creates random paths. 
+Wildly inefficient, but a fun homebrew maze generation algorithm (also creates interesting cave system like paths)
+'''
+
 def path_generator(height, width, start:tuple, end:tuple):
     '''Outputs a list of tuples representing a path from start to end within the height and width'''
 
@@ -57,7 +61,7 @@ def board_from_tuples(height: int, width: int, tuple_list: list):
     for coord in tuple_list:
         board[coord] = 0
 
-    return board
+    return board.tolist()
 
 def maze_generator(n_randpaths: int, height: int,width: int,start: tuple, end: tuple):
     '''returns a maze with height by width shape and start and end nodes. 
@@ -67,11 +71,14 @@ def maze_generator(n_randpaths: int, height: int,width: int,start: tuple, end: t
 
     empty_squares.extend(path_generator(height,width, start, end))
 
-    for x in range(n_randpaths): # creates n_randpaths random paths within the board
+    for _ in range(n_randpaths): # creates n_randpaths random paths within the board
         pos_initial, pos_final = random_start_end(height, width)
         empty_squares.extend(path_generator(height,width, pos_initial, pos_final))
 
-    return(board_from_tuples(height, width, empty_squares))
+    #makes board and marks endpoint
+    board = board_from_tuples(height, width, empty_squares)
+
+    return(board)
 
 if __name__ == "__main__":
     height = 50
@@ -79,7 +86,7 @@ if __name__ == "__main__":
     start = (0,0)
     end = (height-1, width -1)
     
-    board = maze_generator(15, height, width, start, end)
+    board = maze_generator(10, height, width, start, end)
 
     pygame.init()
     
