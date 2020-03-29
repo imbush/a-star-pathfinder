@@ -38,11 +38,15 @@ As recursive backtracking and a-star have been described and analyzed many times
 Here is an example of a 50 by 50 maze generated through recursive backtracking. 
 ![recursive backtracking maze image](/readme_images/maze.png)
 
+This is the source I used: https://weblog.jamisbuck.org/2010/12/27/maze-generation-recursive-backtracking
+
 Note: For the purposes of maze solving, the recursive backtracking function also returns the node on the board with the longest distance from the start. 
 ### [A-star](a_star.py)
+
 Here is an example of an a-star solution of Inle's Algorithm.
 ![Inle's Algorithm solved by a-star](/readme_images/a_star.jpeg)
 
+This is the source I used: https://youtu.be/-L-WgKMFuhE
 ## The Functions:([you can find them here](main.py))
 
 ### 1. terminal_version():
